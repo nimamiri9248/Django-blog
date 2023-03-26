@@ -1,12 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
-from .serializers import PostSerializer
+from .serializers import PostSerializer , CategorySerializer
 from ...models import Post , Category
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import GenericAPIView , ListCreateAPIView,RetrieveUpdateDestroyAPIView
 from rest_framework import mixins , viewsets
-
+from rest_framework.decorators import action
 # Example for Function Based View
 """
 from rest_framework.decorators import api_view,permission_classes
@@ -156,3 +156,4 @@ class CategoryModelViewSet(viewsets.ModelViewSet):
     permission_classes=[permissions.IsAuthenticated]
     serializer_class=CategorySerializer
     queryset=Category.objects.all()
+    
