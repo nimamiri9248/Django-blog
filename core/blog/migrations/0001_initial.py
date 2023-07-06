@@ -43,13 +43,18 @@ class Migration(migrations.Migration):
                 ("title", models.CharField(max_length=100)),
                 (
                     "image",
-                    models.ImageField(blank=True, null=True, upload_to="images/"),
+                    models.ImageField(
+                        blank=True, null=True, upload_to="images/"
+                    ),
                 ),
                 ("content", models.TextField()),
                 ("status", models.BooleanField(default=False)),
                 ("created_date", models.DateTimeField(auto_now_add=True)),
                 ("updated_date", models.DateTimeField(auto_now=True)),
-                ("published_date", models.DateTimeField(blank=True, null=True)),
+                (
+                    "published_date",
+                    models.DateTimeField(blank=True, null=True),
+                ),
                 (
                     "author",
                     models.ForeignKey(

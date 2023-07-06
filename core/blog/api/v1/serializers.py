@@ -25,7 +25,10 @@ class PostSerializer(serializers.ModelSerializer):
     # getting category name instead of id
 
     category = serializers.SlugRelatedField(
-        slug_field="name", read_only=False, many=False, queryset=Category.objects.all()
+        slug_field="name",
+        read_only=False,
+        many=False,
+        queryset=Category.objects.all(),
     )
 
     def get_url(self, obj):
