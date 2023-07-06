@@ -119,7 +119,7 @@ class PostDetail(RetrieveUpdateDestroyAPIView):
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
 
