@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ...models import User, Profile
+from .models import User, Profile
 from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from django.contrib.auth import authenticate
