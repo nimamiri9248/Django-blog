@@ -15,9 +15,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import get_user_model
-from .models import Profile
+from ..models import Profile
 from django.shortcuts import get_object_or_404
-from .utils import EmailThread
+from .utils import send_email_task
 from mail_templated import EmailMessage
 from rest_framework_simplejwt.tokens import RefreshToken
 import jwt
@@ -44,7 +44,7 @@ class RegistrationApiView(generics.GenericAPIView):
                 "admin@admin.com",
                 to=[email],
             )
-            EmailThread(email_obj).start()
+            send_email_task.delay(email_obj)
             return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -172,7 +172,7 @@ class ActivationResendApiView(generics.GenericAPIView):
             "admin@admin.com",
             to=[user_obj.email],
         )
-        EmailThread(email_obj).start()
+        send_email_task.delay(email_obj)    
         return Response(
             {"details": "user activation resend successfully"},
             status=status.HTTP_200_OK,
