@@ -18,11 +18,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.documentation import include_docs_urls
-from django.shortcuts import HttpResponse
+from django.shortcuts import render
 
 
 def homeview(request):
-    return HttpResponse("hello")
+    return render(request, "home.html")
 
 urlpatterns = [
     path('', homeview) , 
