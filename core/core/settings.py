@@ -156,11 +156,22 @@ EMAIL_PORT = 25
 SIMPLE_JWT = { 'AUTH_HEADER_TYPES': ('JWT',) }
 
 
-# # celery configs
-# CELERY_BROKER_URL = 'redis://localhost:6379/1'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+# celery configs
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
 
-# # Django Celery Configuration
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
-# CELERY_ACCEPT_CONTENT = ['json']
+# Django Celery Configuration
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+
+# caching configs
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
